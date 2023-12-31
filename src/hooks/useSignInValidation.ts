@@ -4,7 +4,7 @@ const useSignInValidation = () => {
   const schema = yup.object().shape({
     // 이름
     businessNumber: yup.string().required("반드시 입력해주세요."),
-    // 비밀번호 STC-7 코드 작업
+    // 비밀번호 STC-7 코드 작업 22
     password: yup
       .string()
       .required("반드시 입력해주세요.")
