@@ -37,5 +37,5 @@
 ### 프로젝트 실행 방법
 
 ```bash
-npm start
+npm run dev
 ```
