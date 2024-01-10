@@ -1,0 +1,102 @@
+# Sample workflow for building and deploying a Next.js site to GitHub Pages
+#
+# To get started with Next.js see: https://nextjs.org/docs/getting-started
+#
+name: front build
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  merge:
+    - main
+    - develop
+  # 특정 이벤트(예: 푸시)에만 실행되도록 구성된 Workflow가 있을 때,
+  # 이벤트 발생 이전에 수동으로 해당 Workflow를 실행하고 싶을 때 workflow_dispatch를 사용할 수 있슴.
+  workflow_dispatch:
+
+# pages라는 그룹에 대한 동시 배포 작업을 제어
+# 현재 진행 중인 작업을 취소하지 않고,
+# 새로운 작업을 큐에 추가하고 해당 그룹의 최신 큐된 작업과 진행 중인 작업 사이를 건너뛰어 실행.
+# 기존에 진행 중인 작업은 완료될 때까지 유지
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout # 레포지토리의 코드를 가져옴
+        uses: actions/checkout@v4
+      - name: Detect package manager # 프로젝트에 사용된 패키지 매니저 (Yarn또는 npm)을 확인하고 설정
+        id: detect-package-manager
+        run: |
+          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=yarn" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/package.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=ci" >> $GITHUB_OUTPUT
+            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "Unable to determine package manager"
+            exit 1
+          fi
+      - name: Setup Node # 지정된 노드 버전을 설정하고 패키지 매니저에 따라 캐시 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: Setup Pages # next.js애플리케이션의 특정 설정을 구성(여기서는 basePath를 자동 설정하고 서버측 이미지 최적화 비활성화)
+        uses: actions/configure-pages@v4
+        with:
+          # Automatically inject basePath in your Next.js configuration file and disable
+          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+          #
+          # You may remove this line if you want to manage the configuration yourself.
+          static_site_generator: next
+      - name: Restore cache # 캐시를 복원하여 필요한 경우 빌드 속도를 높임
+        uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+      - name: Install dependencies # 패키지 매니저를 사용하여 프로젝트 종속성을 설치
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Build with Next.js # Next.js 애플리케이션을 빌드
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Static HTML export with Next.js # Next.js 애플리케이션을 정적 HTML 파일
+        run: ${{ steps.detect-package-manager.outputs.runner }} next export
+      - name: Upload artifact # 생성된 정적파일을 아티팩트화 해서 업로드한다.
+        uses: actions/upload-pages-artifact@v3
+        run: echo "Artifact uploaded"
+        with:
+          path: ./out
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        run: echo "Deployed to GitHub Pages"
