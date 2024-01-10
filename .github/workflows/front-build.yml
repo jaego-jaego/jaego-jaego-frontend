@@ -77,8 +77,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js # Next.js 애플리케이션을 빌드
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-      - name: Static HTML export with Next.js # Next.js 애플리케이션을 정적 HTML 파일
-        run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact # 생성된 정적파일을 아티팩트화 해서 업로드한다.
         uses: actions/upload-pages-artifact@v3
         with:
