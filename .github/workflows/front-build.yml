@@ -93,6 +93,6 @@ jobs:
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
+      - name: Confirm Deployment
         run: echo "Deployed to GitHub Pages"
