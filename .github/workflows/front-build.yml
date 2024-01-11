@@ -80,6 +80,7 @@ jobs:
       - name: Upload artifact # 생성된 정적파일을 아티팩트화 해서 업로드한다.
         uses: actions/upload-pages-artifact@v3
         with:
+          name: nextjs-build
           path: ./out
 
   # Deployment job
