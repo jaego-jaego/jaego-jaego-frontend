@@ -84,13 +84,32 @@ jobs:
 
   # Deployment job
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-      - name: Confirm Deployment
-        run: echo "Deployed to GitHub Pages"
+      - uses: actions/checkout@v4
+
+      # 필요한 경우 빌드 아티팩트를 다운로드합니다.
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: nextjs-build
+          path: out
+
+      # AWS Credentials 설정
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }} # 예: us-east-1
+
+      # S3로 정적 파일 업로드
+      - name: Deploy to S3
+        run: |
+          aws s3 sync out s3://your-s3-bucket-name --delete
+
+      # CloudFront 캐시 무효화 (옵션)
+      - name: Invalidate CloudFront Distribution
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
