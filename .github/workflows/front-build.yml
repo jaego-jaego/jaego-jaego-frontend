@@ -86,11 +86,12 @@ jobs:
   # Deployment job
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/main' # main에 push할때만 deploy 하도록 설정
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # 필요한 경우 빌드 아티팩트를 다운로드합니다.
+      # 필요한 경우 빌드 아티팩트를 다운로드
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
