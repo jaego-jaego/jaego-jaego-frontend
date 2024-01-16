@@ -3,7 +3,6 @@
 import { setActiveMenu } from "@/src/redux/features/menuSlice";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 
 interface MenuItemProps {
   icon: string;
@@ -27,7 +26,6 @@ export default function MenuItem({ icon, label, id }: MenuItemProps) {
 
   return (
     <li
-      key={uuidv4()}
       className={`w-[85%] mb-5 box-border px-3 py-3 rounded-[2.1rem] ${
         activeMenuId === id ? "bg-[#0CAF60]" : ""
       } `}

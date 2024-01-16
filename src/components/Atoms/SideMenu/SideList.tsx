@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import SideIcon1 from "@/public/assets/img/SideIcon1.svg";
 import SideIcon2 from "@/public/assets/img/SideIcon2.svg";
 import SideIcon3 from "@/public/assets/img/SideIcon3.svg";
@@ -5,7 +6,6 @@ import SideIcon4 from "@/public/assets/img/SideIcon4.svg";
 import SideIcon5 from "@/public/assets/img/SideIcon5.svg";
 
 import MenuItem from "./MenuItem";
-
 export default function SideList() {
   const menuItems = [
     { id: 1, label: "매장현황", link: "/", icon: SideIcon1 },
@@ -20,7 +20,12 @@ export default function SideList() {
       {menuItems.map((list) => {
         return (
           <>
-            <MenuItem label={list.label} icon={list.icon} id={list.id} />
+            <MenuItem
+              key={uuidv4()}
+              label={list.label}
+              icon={list.icon}
+              id={list.id}
+            />
           </>
         );
       })}
