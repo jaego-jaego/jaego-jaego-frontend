@@ -5,7 +5,7 @@ import InventoryManagement from "@/src/components/MoleCules/InventoryManagement/
 
 export default function Home() {
   return (
-    <main className="w-full h-screen flex  box-border p-24 bg-[#161D26]">
+    <main className="w-full h-screen flex  box-border p-4 pt-[9vh] bg-[#161D26]">
       <div className="w-[20%] min-w-[250px]">
         <SideMenu />
       </div>
