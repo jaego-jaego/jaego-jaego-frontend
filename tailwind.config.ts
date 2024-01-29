@@ -13,6 +13,7 @@ module.exports = {
       },
       backgroundColor: {
         "custom-gray": "rgba(217, 217, 217, 0.50)",
+        "custom-green": "#0CAF60",
       },
       fontSize: {
         md: "1.5rem",

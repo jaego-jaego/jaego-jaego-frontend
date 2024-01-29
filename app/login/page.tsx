@@ -1,22 +1,26 @@
 "use client";
 
 import BaseButton from "@/src/components/Atoms/Base/BaseButton";
+import BaseError from "@/src/components/Atoms/Base/BaseError";
 import BaseInput from "@/src/components/Atoms/Base/BaseInput";
-import LoginSideMenuItem from "@/src/components/Atoms/LoginSideMenu/LoginSideItem";
-import SideList from "@/src/components/Atoms/SideMenu/SideList";
 import LoginSideMenuList from "@/src/components/MoleCules/LoginSideMenu/LoginSideList";
-import SideMenu from "@/src/components/MoleCules/Menu/SideMenu";
 import useSignInValidation from "@/src/hooks/useSignInValidation";
+import { openModal } from "@/src/redux/features/modalSlice";
+import GlobalModal from "@/src/utils/GlobalModal";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
-export default function Page() {
+export default function Login() {
   const { schema } = useSignInValidation();
-
-  const { register, handleSubmit } = useForm({
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
     mode: "onSubmit",
     defaultValues: {
@@ -24,6 +28,15 @@ export default function Page() {
       password: "",
     },
   });
+
+  const handleAdminClick = () => {
+    dispatch(
+      openModal({
+        modalType: "AdminLoginModal",
+        isOpen: true,
+      })
+    );
+  };
 
   const handleLoginClick = (data: any) => {
     console.log("출력 데이터", data);
@@ -57,6 +70,7 @@ export default function Page() {
                       type="text"
                       register={register("businessNumber")}
                     />
+                    <BaseError>{errors.businessNumber?.message}</BaseError>
                   </div>
                 </div>
                 <div className="flex items-center mb-11">
@@ -74,6 +88,7 @@ export default function Page() {
                       type="password"
                       register={register("password")}
                     />
+                    <BaseError>{errors.password?.message}</BaseError>
                   </div>
                 </div>
                 <div className="text-center">
@@ -100,6 +115,13 @@ export default function Page() {
               alt="Picture of me"
               width={511}
               height={487}
+            />
+          </div>
+          <div className="absolute bottom-10 right-10">
+            <BaseButton
+              color="transparency"
+              size="xs"
+              onClick={handleAdminClick}
             />
           </div>
         </div>
