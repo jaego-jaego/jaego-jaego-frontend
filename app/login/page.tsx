@@ -6,16 +6,22 @@ import BaseInput from "@/src/components/Atoms/Base/BaseInput";
 import LoginSideMenuList from "@/src/components/MoleCules/LoginSideMenu/LoginSideList";
 import useSignInValidation from "@/src/hooks/useSignInValidation";
 import { openModal } from "@/src/redux/features/modalSlice";
-import GlobalModal from "@/src/utils/GlobalModal";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { VscEye } from "react-icons/vsc";
+import { VscEyeClosed } from "react-icons/vsc";
+import { useState } from "react";
+
 export default function Login() {
   const { schema } = useSignInValidation();
   const dispatch = useDispatch();
+  const [passwordMasking, setPasswordMasking] = useState(true);
+
   const {
     register,
     handleSubmit,
@@ -28,6 +34,11 @@ export default function Login() {
       password: "",
     },
   });
+
+  // 비밀번호 마스킹
+  const handlePasswordClick = () => {
+    setPasswordMasking(!passwordMasking);
+  };
 
   const handleAdminClick = () => {
     dispatch(
@@ -68,6 +79,7 @@ export default function Login() {
                       size="sm"
                       color="mint"
                       type="text"
+                      placeholder={"사업자번호 14자리를 입력해주세요"}
                       register={register("businessNumber")}
                     />
                     <BaseError>{errors.businessNumber?.message}</BaseError>
@@ -80,15 +92,30 @@ export default function Login() {
                   >
                     패스워드
                   </label>
-                  <div className="w-80 h-20">
+                  <div className="w-80 h-20 relative">
                     <BaseInput
                       size="sm"
                       color="mint"
                       id="password"
-                      type="password"
+                      type={passwordMasking ? "password" : "text"}
                       register={register("password")}
                     />
                     <BaseError>{errors.password?.message}</BaseError>
+                    {passwordMasking ? (
+                      <div
+                        className="absolute top-6 right-5"
+                        onClick={handlePasswordClick}
+                      >
+                        <VscEye size={25} />
+                      </div>
+                    ) : (
+                      <div
+                        className="absolute top-6 right-5"
+                        onClick={handlePasswordClick}
+                      >
+                        <VscEyeClosed size={25} />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="text-center">

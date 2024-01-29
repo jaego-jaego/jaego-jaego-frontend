@@ -13,6 +13,7 @@ module.exports = {
       },
       backgroundColor: {
         "custom-gray": "rgba(217, 217, 217, 0.50)",
+        "custom-gray-hover": "rgba(217, 217, 217)",
         "custom-green": "#0CAF60",
       },
       fontSize: {

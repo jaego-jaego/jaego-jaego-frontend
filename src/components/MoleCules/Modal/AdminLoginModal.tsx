@@ -1,12 +1,13 @@
-import { useForm } from "react-hook-form";
-import BaseButton from "../../Atoms/Base/BaseButton";
-import BaseInput from "../../Atoms/Base/BaseInput";
 import useAdminValidation from "@/src/hooks/useAdminValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import BaseButton from "../../Atoms/Base/BaseButton";
 import BaseError from "../../Atoms/Base/BaseError";
+import BaseInput from "../../Atoms/Base/BaseInput";
 
 export default function AdminLoginModal() {
   const { schema } = useAdminValidation();
+
   const {
     register,
     handleSubmit,
@@ -21,6 +22,8 @@ export default function AdminLoginModal() {
 
   const onSubmit = (data: { adminInput: string }) => {
     console.log(data);
+    if (data.adminInput === "1234") {
+    }
   };
 
   return (

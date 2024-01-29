@@ -10,6 +10,7 @@ interface BaseInputProps {
   size: Size;
   id: string;
   register?: UseFormRegisterReturn;
+  placeholder?: string;
 }
 
 export default function BaseInput({
@@ -18,6 +19,7 @@ export default function BaseInput({
   id,
   register,
   type,
+  placeholder,
 }: BaseInputProps) {
   let combinedClassName = ""; // 이 변수에 className을 중첩시킨다.
   switch (color) {
@@ -45,6 +47,7 @@ export default function BaseInput({
       className={`${combinedClassName}`}
       id={id}
       type={type}
+      placeholder={placeholder}
       {...register}
     />
   );
