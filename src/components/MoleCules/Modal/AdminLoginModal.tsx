@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import BaseButton from "../../Atoms/Base/BaseButton";
 import BaseError from "../../Atoms/Base/BaseError";
 import BaseInput from "../../Atoms/Base/BaseInput";
+import { useDispatch } from "react-redux";
+import { closeModal, openModal } from "@/src/redux/features/modalSlice";
 
 export default function AdminLoginModal() {
   const { schema } = useAdminValidation();
-
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -20,11 +22,27 @@ export default function AdminLoginModal() {
     },
   });
 
+
   const onSubmit = (data: { adminInput: string }) => {
     console.log(data);
     if (data.adminInput === "1234") {
+      dispatch(
+        closeModal()
+      );
+      dispatch(openModal({modalType:'AdminApprovalModal'}));
     }
   };
+
+  // 엔터 처리
+  const onSubmitSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if(e.currentTarget.value === "1234")
+      dispatch(
+        closeModal()
+      );
+      dispatch(openModal({modalType:'AdminApprovalModal'}));
+    }
+  } 
 
   return (
     <div className="w-[431px] bg-white text-center border-4 border-[#0CAF60] rounded-xl border-solid py-12 border-box z-20">
@@ -38,6 +56,7 @@ export default function AdminLoginModal() {
             size="sm"
             color="gray"
             type="password"
+            onSubmitSearch={onSubmitSearch} 
             register={register("adminInput")}
           />
           <BaseError>{errors.adminInput?.message}</BaseError>

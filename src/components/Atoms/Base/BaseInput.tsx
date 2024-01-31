@@ -11,6 +11,7 @@ interface BaseInputProps {
   id: string;
   register?: UseFormRegisterReturn;
   placeholder?: string;
+  onSubmitSearch?:any
 }
 
 export default function BaseInput({
@@ -20,6 +21,7 @@ export default function BaseInput({
   register,
   type,
   placeholder,
+  onSubmitSearch
 }: BaseInputProps) {
   let combinedClassName = ""; // 이 변수에 className을 중첩시킨다.
   switch (color) {
@@ -48,6 +50,7 @@ export default function BaseInput({
       id={id}
       type={type}
       placeholder={placeholder}
+      onKeyDown={onSubmitSearch}
       {...register}
     />
   );

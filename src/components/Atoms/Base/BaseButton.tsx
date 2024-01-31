@@ -7,6 +7,7 @@ interface BaseButtonProps {
   children?: string;
   className?: string;
   onClick?: () => void;
+  onSubmitSearch?: any
 }
 
 export default function BaseButton({
@@ -15,6 +16,7 @@ export default function BaseButton({
   children,
   className,
   onClick,
+  onSubmitSearch
 }: BaseButtonProps) {
   let combineClassName = "";
   switch (color) {

@@ -2,15 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal, selectModal } from "../redux/features/modalSlice";
 
 import AdminLoginModal from "../components/MoleCules/Modal/AdminLoginModal";
+import AdminApprovalModal from "../components/MoleCules/Modal/AdminApprovalModal";
 
 const MODAL_TYPES = {
   LoginModal: "AdminLoginModal",
+  ApprovalModal: "AdminApprovalModal"
 };
 
 const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.LoginModal,
     component: <AdminLoginModal />,
+  },
+  {
+    type: MODAL_TYPES.ApprovalModal,
+    component: <AdminApprovalModal />,
   },
 ];
 

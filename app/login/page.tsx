@@ -12,7 +12,6 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { useState } from "react";
