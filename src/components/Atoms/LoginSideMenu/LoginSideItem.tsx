@@ -8,7 +8,7 @@ interface LoginSideItemProps {
 export default function LoginSideMenuItem({ item, route }: LoginSideItemProps) {
   return (
     <Link href={route}>
-      <li className="w-full h-1/3 flex items-center justify-center bg-custom-gray border-2 border-solid text-color-white">
+      <li className="w-full h-1/3 flex items-center justify-center bg-custom-gray border-2 border-solid text-color-white hover:bg-custom-gray-hover">
         <div className="font-bold text-3xl">{item}</div>
       </li>
     </Link>

@@ -3,6 +3,7 @@ import { Providers } from "@/src/redux/provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GlobalModal from "@/src/utils/GlobalModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
