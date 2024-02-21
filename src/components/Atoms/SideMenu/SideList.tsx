@@ -10,7 +10,7 @@ export default function SideList() {
   const menuItems = [
     { id: 1, label: "매장현황", link: "/", icon: SideIcon1 },
     { id: 2, label: "예약관리", link: "/reservation", icon: SideIcon2 },
-    { id: 3, label: "재고관리", link: "/item", icon: SideIcon3 },
+    { id: 3, label: "재고관리", link: "management/stock", icon: SideIcon3 },
     { id: 4, label: "매장관리", link: "/services", icon: SideIcon4 },
     { id: 5, label: "개인설정", link: "/private", icon: SideIcon5 },
   ];

@@ -6,7 +6,7 @@ import Skeleton from "@/src/utils/Skeleton";
 export default function SideMenu() {
   return (
     <div>
-      <div className="w-inherit h-[100%] bg-[#12181F] border-box pt-20 pb-60 rounded-xl">
+      <div className="w-inherit h-[100%] bg-[#12181F] border-box mt-[9rem] pt-[8rem] pb-60 rounded-xl">
         <div>
           <p className="text-center text-color-white text-md mb-3">
             [매장명]✅
