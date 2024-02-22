@@ -3,6 +3,7 @@ import counterReducer from "./features/counterSlice";
 import sessionReducer from "./features/sessionSlice";
 import menuReducer from "./features/menuSlice";
 import modalReducer from "./features/modalSlice";
+import tabReducer from "./features/tabSlice";
 import { userApi } from "./services/userApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     sessionReducer,
     menuReducer,
+    tabReducer,
     modal: modalReducer,
   },
   devTools: process.env.NODE_ENV !== "production",

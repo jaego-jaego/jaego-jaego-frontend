@@ -7,7 +7,7 @@ export default function ManagementLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex w-screen bg-[#161D26]">
+    <section className="flex bg-[#161D26]">
       <div className="w-[20%] h-screen min-w-[250px]">
         <SideMenu />
       </div>

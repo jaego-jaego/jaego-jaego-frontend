@@ -16,17 +16,15 @@ export default function SideList() {
   ];
 
   return (
-    <ul className="">
+    <ul>
       {menuItems.map((list) => {
         return (
-          <>
-            <MenuItem
-              key={uuidv4()}
-              label={list.label}
-              icon={list.icon}
-              id={list.id}
-            />
-          </>
+          <MenuItem
+            key={uuidv4()}
+            label={list.label}
+            icon={list.icon}
+            id={list.id}
+          />
         );
       })}
     </ul>
