@@ -19,14 +19,17 @@ export default function TabMenuItem({ label, value }: TabMenuItemProps) {
   };
 
   return (
-    <button
-      value={value}
-      className={`cursor-pointer px-4 py-2 mx-2  hover:bg-[#0CAF60] rounded-md ${
-        activeTabMenu === value ? "bg-[#0CAF60]" : undefined
-      }`}
-      onClick={handleClickTabMenu}
-    >
-      {label}
-    </button>
+    <>
+      <button
+        value={value}
+        className={`cursor-pointer px-4 py-2 rounded-md hover:bg-[#0CAF60]   ${
+          activeTabMenu === value ? "bg-[#0CAF60]" : undefined
+        }`}
+        onClick={handleClickTabMenu}
+      >
+        {label}
+      </button>
+      <span className="after:content-['|'] mx-2 after:text-white last:after:content-['']"></span>
+    </>
   );
 }

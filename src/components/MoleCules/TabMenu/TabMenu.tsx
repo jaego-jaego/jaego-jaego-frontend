@@ -9,16 +9,13 @@ const tabList = [
 
 export default function TabMenu() {
   return (
-    <div className="flex justify-between min-w-[40%]  p-4">
+    <div className="flex justify-between min-w-[40%]">
       <div className="flex items-center text-white">
         {tabList.map((list) => {
           return (
             <TapMenuItem key={list.id} label={list.label} value={list.value} />
           );
         })}
-        {/* <TapMenuItem label="입고등록" /> |
-        <TapMenuItem label="사용폐기등록" /> |
-        <TapMenuItem label="재고조회" /> */}
       </div>
     </div>
   );
