@@ -5,5 +5,5 @@ import React from "react";
 // }
 
 export default function TableColumn<T>({ data }: any) {
-  return <td className="border px-4 py-2 text-center">{data}</td>;
+  return <td className=" px-2 py-[10px] text-center text-white">{data}</td>;
 }

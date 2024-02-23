@@ -3,8 +3,9 @@ import Table from "@/src/components/MoleCules/Table/Table";
 
 export default function stock() {
   return (
-    <div className="px-4">
+    <div className="w-full px-4">
       <TabMenu />
+      <div></div>
       <Table />
     </div>
   );

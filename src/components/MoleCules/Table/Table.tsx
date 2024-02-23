@@ -6,9 +6,24 @@ export default function Table<T>() {
     {
       id: "1",
       data: {
-        name: "제품A",
-        shop: "납품처A",
-        itemId: "ID001",
+        name: (
+          <input
+            type="text"
+            className="text-white w-[99%] h-[30px] bg-[#00000030] border-2 border-solid border-black rounded-md"
+          />
+        ),
+        shop: (
+          <input
+            type="text"
+            className="text-white w-[99%] h-[30px] bg-[#00000030] border-2 border-solid border-black rounded-md"
+          />
+        ),
+        itemId: (
+          <input
+            type="text"
+            className="text-white w-[99%] h-[30px] bg-[#00000030] border-2 border-solid border-black rounded-md"
+          />
+        ),
         year: 4,
         month: 2,
         day: 2,
@@ -39,6 +54,199 @@ export default function Table<T>() {
         number: 3,
       },
     },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품C",
+        shop: "납품처C",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품f",
+        shop: "납품처f",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품f",
+        shop: "납품처f",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품f",
+        shop: "납품처f",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품f",
+        shop: "납품처f",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+    {
+      id: "3",
+      data: {
+        name: "제품ll",
+        shop: "납품처f",
+        itemId: "ID003",
+        year: 4,
+        month: 2,
+        day: 2,
+        number: 3,
+      },
+    },
+
     // 나머지 데이터도 같은 형식으로 추가
   ];
 
@@ -53,35 +261,45 @@ export default function Table<T>() {
   ];
 
   return (
-    <table className="border-collapse border w-full text-white mx-auto">
-      <thead>
-        <tr>
-          {tableHeaders.map((headerList) => {
-            return (
-              <th
-                key={headerList.id}
-                className="relative border-r-[1px] border-solid border-[#ccc] px-4 py-4  bg-[#161D26] after:absolute after:left-0 after:top-0 after:w-full after:h-full after:bg-[#ffffff23]"
-              >
-                {headerList.label}
-              </th>
-            );
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        {mockData.map((row: any) => (
-          <tr key={row.id}>
-            <TableColumn data={row.data.name} />
-            <TableColumn data={row.data.shop} />
-            <TableColumn data={row.data.itemId} />
-            <TableColumn data={row.data.year} />
-            <TableColumn data={row.data.month} />
-            <TableColumn data={row.data.day} />
-            <TableColumn data={row.data.number} />
-            {/* 다른 열에 대한 데이터 채우기 */}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="flex flex-col">
+      <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="sm:rounded-lg">
+            <div className="h-[60vh] overflow-auto">
+              <table className="min-w-full">
+                <thead className="sticky top-0 bg-[#161D26] border-b-[0.5px] border-[#656565] border-solid">
+                  <tr className="">
+                    {tableHeaders.map((headerList) => {
+                      return (
+                        <th
+                          key={headerList.id}
+                          scope="col"
+                          className="px-6 py-3 text-center text-lg font-medium text-white border-r-[0.5px] border-solid border-[#656565] tracking-wider last:border-0"
+                        >
+                          {headerList.label}
+                        </th>
+                      );
+                    })}
+                  </tr>
+                </thead>
+                <tbody className=" divide-y divide-gray-200 overflow-auto h-full">
+                  {mockData.map((row: any) => (
+                    <tr key={row.id}>
+                      <TableColumn data={row.data.name} />
+                      <TableColumn data={row.data.shop} />
+                      <TableColumn data={row.data.itemId} />
+                      <TableColumn data={row.data.year} />
+                      <TableColumn data={row.data.month} />
+                      <TableColumn data={row.data.day} />
+                      <TableColumn data={row.data.number} />
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
