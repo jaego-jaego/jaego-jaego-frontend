@@ -4,6 +4,10 @@ import React from "react";
 //   data: TableRow<T>;
 // }
 
-export default function TableColumn<T>({ data }: any) {
-  return <td className=" px-2 py-[10px] text-center text-white">{data}</td>;
+export default function TableColumn<T>({ register, data }: any) {
+  return (
+    <td className="px-2 py-[10px] text-center text-white" {...register(`${}`)}>
+      {data}
+    </td>
+  );
 }
