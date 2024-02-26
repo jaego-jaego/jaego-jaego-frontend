@@ -8,7 +8,7 @@ export default function ManagementLayout({
 }) {
   return (
     <section className="relative">
-      <div className="absolute top-36 min-w-[250px] ">
+      <div className="absolute top-36 left-10 min-w-[250px] ">
         <SideMenu />
       </div>
       <div className="absolute top-36 right-10 w-[77%] bg-[#12181F] border-box p-8 rounded-xl">
