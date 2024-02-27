@@ -4,10 +4,20 @@ import React from "react";
 //   data: TableRow<T>;
 // }
 
-export default function TableColumn<T>({ register, data }: any) {
+export default function TableColumn<T>({ register, row, index }: any) {
   return (
-    <td className="px-2 py-[10px] text-center text-white" {...register(`${}`)}>
-      {data}
-    </td>
+    <>
+      {Object.keys(row).map((el) => {
+        return el !== "id" ? (
+          <td key={el} className="px-2 py-[10px] text-center text-white">
+            <input
+              type="text"
+              className="text-white w-[99%] h-[30px] bg-[#00000030] border-2 border-solid border-black rounded-md"
+              {...register(`stockItem.${index}.${el}`)}
+            />
+          </td>
+        ) : null;
+      })}
+    </>
   );
 }

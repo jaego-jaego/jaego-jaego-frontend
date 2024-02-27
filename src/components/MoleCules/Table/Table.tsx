@@ -28,8 +28,8 @@ const tableHeaders = [
   { id: 7, label: "순번자리수", value: "number" },
 ];
 
-export default function Table<T>({ register }: any) {
-  console.log("register", register);
+export default function Table<T>({ fields, register }: any) {
+  console.log("register", register, fields);
   return (
     <div className="flex flex-col">
       <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -53,17 +53,24 @@ export default function Table<T>({ register }: any) {
                   </tr>
                 </thead>
                 <tbody className=" divide-y divide-gray-200 overflow-auto h-full">
-                  {mockData.map((row: any) => (
-                    <tr key={row.id}>
+                  {fields.map((row: any, index: number) => {
+                    console.log("row", row);
+                    return (
+                      <tr key={row.id}>
+                        <TableColumn
+                          row={row}
+                          index={index}
+                          register={register}
+                        />
+                        {/* <TableColumn register={register} />
                       <TableColumn register={register} />
                       <TableColumn register={register} />
                       <TableColumn register={register} />
                       <TableColumn register={register} />
-                      <TableColumn register={register} />
-                      <TableColumn register={register} />
-                      <TableColumn register={register} />
-                    </tr>
-                  ))}
+                      <TableColumn register={register} /> */}
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
